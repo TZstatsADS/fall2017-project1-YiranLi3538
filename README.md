@@ -1,10 +1,9 @@
 # Fall 2017
-# Project 1: What did the presidents say at their inauguation?
+# Project 1: The Commander in Chief Vs The Reality TV Star
 
 ![image](figs/title.jpg)
 
 ### [Project Description](doc/)
-This is the first and only *individual* (as opposed to *team*) this semester. 
 
 Term: Fall 2017
 
