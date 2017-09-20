@@ -8,10 +8,10 @@ This is the first and only *individual* (as opposed to *team*) this semester.
 
 Term: Fall 2017
 
-+ Projec title: Lorem ipsum dolor sit amet
-+ This project is conducted by [your name]
++ Projec title: The Commander in Chief Vs The Reality TV Star
++ This project is conducted by Yiran Li
 
-+ Project summary: [a short summary] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: Both FDR and Donald Trump are important political figures to study. In this project, I used various text mining techniques and sentimental analysis to make the argument that the difference in their speech are indicative of their drastically diverging attitudes towards the presidency of the United States as well as their disparate characters.
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
