@@ -1,8 +1,8 @@
 ---
 title: "Project 1 Presidential Speeches"
 output:
-  html_notebook: default
   html_document: default
+  html_notebook: default
   pdf_document: default
 ---
 ## _Yiran Li \  yl3538_
@@ -83,6 +83,7 @@ comparison.cloud(tdm_FDR_DT, random.order=FALSE, colors = c("indianred3","lights
 
 
 ```
+
 ###  \   \  The above comparison word cloud reveals the difference in the choice of words and way of speaking between FDR and Trump. Trump uses a great deal more colloquial terms such as "going", "get", "like"; FDR used terms that have more gravity and commands attention and respect, such as "discipline", "action", "duty".  
 
 ###  \   \  FDR's choice of words not only shows thoughtfulness and sophistication but also displays his love and high expectation of his country as well as his sencerity for the office. This sharp contrast with the simplicity of Trump's vocabulary, thus the contrast of attitudes, will be made even more obvious when we consider the sentiments of their sentences.
@@ -96,7 +97,7 @@ main.page <- read_html(x = "http://www.presidency.ucsb.edu/inaugurals.php")
 # f.speechlinks is a function for extracting links from the list of speeches. 
 inaug=f.speechlinks(main.page)
 
-as.Date(inaug[-nrow(inaug),1], format="%B %e, %Y")
+#as.Date(inaug[-nrow(inaug),1], format="%B %e, %Y")
 inaug=inaug[-nrow(inaug),] # remove the last line, irrelevant due to error.
 
 #### Nomination speeches
@@ -263,6 +264,7 @@ FILE2 = tempfile()
 writeLines(as.character(DT_reord_speechdf2[1:5]), con = FILE2)
 diffr(FILE1, FILE2, before = "FDR's Highest Fear Sentences", after = "Trump's Highest Fear Sentences")
 ```
+
 ###  \   \   Consistent with his former life as an uninhibited reality TV star, the above juxtaposition shows that Trump’s style is short, straightforward, and almost informal. This way of speaking clearly aims at connecting with the common people and leverages Trump’s charisma with those who prefer say-it-as-it-is over political rhetoric. 
  
 ###  \   \   FDR, on the other hand, approached the presidential power with public opinion differently. The widely respected president spoke with much more poise and sophistication, as a true commander in chief. This is, of course, partially due to the different historical period the two presidents inhabit. But it also speaks volume about how FDR chose to engage with his audience – the American people, who he respected and trusted to be able to understand the nuance and gravity of his way of speaking. 
@@ -367,121 +369,6 @@ dygraph(DT_terms, main = "Trump Nomination and Inauguration Speech Negativity Pr
 ##
 ```
 
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
-#print("FDR's Most Sentimentally Charged Sentences")
-speech_df=tbl_df(sentence_list)%>%
-  filter(File=="FranklinDRoosevelt", type=="nomin", Term==1, word.count>=5)%>%
-  select(sentences, anger:trust)
-speech_df=as.data.frame(speech_df)
-#as.character(speech_df$sentences[apply(speech_df[,-1], 2, which.max)])
-
-#print("FDR's Most Trust Sentences")
-speech_df2=tbl_df(sentence_list)%>%
-  filter(File=="FranklinDRoosevelt", word.count>=5)%>%
-  select(sentences, anger:trust)
-speech_df2=as.data.frame(speech_df2)
-#as.character(speech_df2$sentences[apply(speech_df2[,-1], 2, which.max)])
-trust_ord <- order(speech_df2$trust, decreasing = TRUE)
-FDR_reord_speechdf2<-speech_df2$sentences[trust_ord]
-#as.character(FDR_reord_speechdf2[1:5])
-
-#
-
-#print("FDR's Most Trust Sentences in Inaugural Speeches")
-speech_df2=tbl_df(sentence_list)%>%
-  filter(File=="FranklinDRoosevelt", type=="inaug", word.count>=5)%>%
-  select(sentences, anger:trust)
-speech_df2=as.data.frame(speech_df2)
-#as.character(speech_df2$sentences[apply(speech_df2[,-1], 2, which.max)])
-trust_ord <- order(speech_df2$trust, decreasing = TRUE)
-reord_speechdf2<-speech_df2$sentences[trust_ord]
-#as.character(reord_speechdf2[1:5])
-```
-
-
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
-
-## DT_sentiment
-#print("Trump's Most Sentimentally Charged Sentences")
-speech_df <- DT_sentiment %>%
-  select(sentences, anger:trust)
-speech_df=as.data.frame(speech_df)
-#as.character(speech_df$sentences[apply(speech_df[,-1], 2, which.max)])
-##
-
-#print("Trump's Most Trust Sentences")
-speech_df2 <- DT_sentiment%>%
-  select(sentences, anger:trust)
-speech_df2 <- as.data.frame(speech_df2)
-trust_ord2 <- order(speech_df2$trust, decreasing = TRUE)
-DT_reord_speechdf2<-speech_df2$sentences[trust_ord2]
-#as.character(DT_reord_speechdf2[1:5])
-
-#print("Trump's Most Trust Sentences in Inaugural Speeches")
-speech_df2 <- DT_sentiment%>%
-  filter(type=="inaug") %>%
-  select(sentences, anger:trust)
-speech_df2 <- as.data.frame(speech_df2)
-trust_ord2 <- order(speech_df2$trust, decreasing = TRUE)
-reord_speechdf3<-speech_df2$sentences[trust_ord2]
-#as.character(reord_speechdf3[1:5])
-```
-
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
-#print("FDR's Most Trust Sentences")
-speech_df2=tbl_df(sentence_list)%>%
-  filter(File=="FranklinDRoosevelt", word.count>=5)%>%
-  select(sentences, anger:trust)
-speech_df2=as.data.frame(speech_df2)
-#as.character(speech_df2$sentences[apply(speech_df2[,-1], 2, which.max)])
-trust_ord <- order(speech_df2$trust, decreasing = TRUE)
-FDR_reord_speechdf2<-speech_df2$sentences[trust_ord]
-
-#print("Trump's Most Trust Sentences")
-speech_df2 <- DT_sentiment%>%
-  select(sentences, anger:trust)
-speech_df2 <- as.data.frame(speech_df2)
-trust_ord2 <- order(speech_df2$trust, decreasing = TRUE)
-DT_reord_speechdf2<-speech_df2$sentences[trust_ord2]
-
-file1 = tempfile()
-writeLines(as.character(FDR_reord_speechdf2[1:5]), con = file1)
-  
-  
-#writeLines("hello, world!\n", con = file1)
-file2 = tempfile()
-writeLines(as.character(DT_reord_speechdf2[1:5]), con = file2)
-diffr(file1, file2, before = "FDR's Highest Trust Sentences", after = "Trump's Highest Trust Sentences")
-
-```
-
-```{r, warning = FALSE, echo = FALSE, message = FALSE}
-#print("FDR's Most Fear Sentences")
-speech_df2=tbl_df(sentence_list)%>%
-  filter(File=="FranklinDRoosevelt", word.count>=5)%>%
-  select(sentences, anger:trust)
-speech_df2=as.data.frame(speech_df2)
-#as.character(speech_df2$sentences[apply(speech_df2[,-1], 2, which.max)])
-trust_ord <- order(speech_df2$fear, decreasing = TRUE)
-FDR_reord_speechdf2<-speech_df2$sentences[trust_ord]
-
-#print("Trump's Most Fear Sentences")
-speech_df2 <- DT_sentiment%>%
-  select(sentences, anger:trust)
-speech_df2 <- as.data.frame(speech_df2)
-trust_ord2 <- order(speech_df2$fear, decreasing = TRUE)
-DT_reord_speechdf2<-speech_df2$sentences[trust_ord2]
-
-FILE1 = tempfile()
-writeLines(as.character(FDR_reord_speechdf2[1:5]), con = FILE1)
-  
-  
-#writeLines("hello, world!\n", con = FILE1)
-FILE2 = tempfile()
-writeLines(as.character(DT_reord_speechdf2[1:5]), con = FILE2)
-diffr(FILE1, FILE2, before = "FDR's Highest Fear Sentences", after = "Trump's Highest Fear Sentences")
-```
-
 
 #  \
 
@@ -515,6 +402,7 @@ plot_ly(FDR_agg[ FDR_agg$Type=="nomin",], x = ~Term, y = ~anger, type = 'bar', n
 ###
 
 ```
+
 ###  \   \  Nomination acceptance and inaugural speeches serve different functions. However, it is expected that the speaker would be gracious and presidential, thus we should expect to see high scores for trust and anticipation regardless of the speaker. Yet, despite winning the nomination and even the presidency, Trump could not resist his tendency to generate controversy and exacerbate conflict by inciting fear and negativity. As shown below, fear and anger remains prominently high in his speeches which is consistent with his incendiary style.  
 
 ```{r, warning = FALSE, echo = FALSE, message = FALSE}
@@ -542,6 +430,7 @@ plot_ly(DT_agg[ DT_agg$Type=="inaug",], x = ~Term, y = ~anger, type = 'bar', nam
   layout(yaxis = list(title = 'Sentiment Score'), barmode = 'group', title = "Trump Inaugural Speech Sentiment Scores")
 #
 ```
+
 ###  \   \  The sharp contrast of sentiments clearly indicates the different significances that holding the highest office in the land takes on for Roosevelt and Trump. For FDR, it is about putting his country and people first. While for Trump, self-importance certainly takes priority. 
 
 
