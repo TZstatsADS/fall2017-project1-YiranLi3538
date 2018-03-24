@@ -12,4 +12,4 @@ Term: Fall 2017
 
 + Project summary: Both FDR and Donald Trump are important political figures to study. In this project, I used various text mining techniques and sentimental analysis to make the argument that the difference in their speech are indicative of their drastically diverging attitudes towards the presidency of the United States as well as their disparate characters.
 
-To view the final report, please download the html file :)
+To view the ([final report](output/Project1_Inaugural_Yiran_Li.nb.html)) , please download the html file :)
